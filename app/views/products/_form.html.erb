@@ -22,20 +22,29 @@
   </div>
   <br>
 
-  <%= form.fields_for :product_variants do |variant| %>
-    <div>
-      <%= variant.label :color, style: "display: block" %>
-      <%= variant.text_field :color %>
-    </div>
-
-    <div>
-      <%= variant.label :size, style: "display: block" %>
-      <%= variant.text_field :size %>
-    </div>
+  <%= form.fields_for :product_variants do |f| %>
+    <%= render 'product_variant_fields', f: f %>
   <% end %>
-  <br>
+
+  <%= link_to_add_fields "Add Variant", form, :product_variants %>
+  <br><br>
 
   <div>
     <%= form.submit %>
   </div>
 <% end %>
+
+<script type="text/javascript">
+  window.onload = function () {
+    $(function() {
+      $('form').on('click', '.add_fields', function(event){
+        console.log('clicked')
+        let regexp, time;
+        time = new Date().getTime();
+        regexp = new RegExp($(this).data('id'), 'g');
+        $(this).before($(this).data('fields').replace(regexp, time));
+        return event.preventDefault();
+      })
+    });
+  };
+</script>
