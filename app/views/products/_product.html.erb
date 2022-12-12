@@ -9,4 +9,13 @@
     <%= product.description %>
   </p>
 
+  <p>
+    <strong>Available Variants <%= product.product_variants.count %></strong>
+    <br><br>
+    <% product.product_variants.each do |variant| %>
+      <%= variant.color %>
+      <%= variant.size %>
+      <br>
+    <% end %>
+  </p>
 </div>
