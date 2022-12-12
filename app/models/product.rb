@@ -1,3 +1,3 @@
 class Product < ApplicationRecord
-  has_many :products
+  has_many :product_variants
 end
